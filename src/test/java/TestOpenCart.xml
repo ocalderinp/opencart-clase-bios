@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SingleSuite" verbose="1" parallel="tests" thread-count="2">
+
+    <parameter name="currency" value="gbp"/>
+    <!-- <parameter name="valid_pass" value="pass00"/>-->
+
+    <test name="test in Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name = "TestOpenCart">
+                <methods>
+
+                    <include name="testRegistro"/>
+
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
