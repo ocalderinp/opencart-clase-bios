@@ -2,7 +2,7 @@
 
 <suite name="SingleSuite" verbose="1" parallel="tests" thread-count="2">
 
-    <parameter name="currency" value="gbp"/>
+    <parameter name="currency" value="GBP"/>
     <!-- <parameter name="valid_pass" value="pass00"/>-->
 
     <test name="test in Chrome">
@@ -10,9 +10,12 @@
         <classes>
             <class name = "TestOpenCart">
                 <methods>
-
                     <include name="testRegistro"/>
-
+                </methods>
+            </class>
+            <class name = "HomePageTest">
+                <methods>
+                    <include name="cambioMonedaParameters"/>
                 </methods>
             </class>
         </classes>

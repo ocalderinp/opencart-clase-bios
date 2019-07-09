@@ -19,17 +19,24 @@ public class NavigateBar {
     @FindBy(how = How.XPATH, using = "//a[@href='https://opencart.abstracta.us:443/index.php?route=account/register']")
     WebElement btnRegister;
 
+    CurrencyMenu currencyMenu;
+
+
     public NavigateBar(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
+        currencyMenu = new CurrencyMenu(driver);
     }
 
     public RegisterPage clickInRegister() {
         btnMyAccount.click();
         btnRegister.click();
-//        Thread.sleep(3000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"content\"]/h1")));
         return new RegisterPage(driver);
+    }
+
+    public void selectMoneda(String moneda){
+        currencyMenu.seleccionarMoneda(moneda);
     }
 }

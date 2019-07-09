@@ -21,5 +21,8 @@ public class BasePage {
     public RegisterPage clickInRegister(){
         return bar.clickInRegister();
     }
+    public void seleccionarMoneda(String moneda){
+        bar.selectMoneda(moneda);
+    }
 
 }

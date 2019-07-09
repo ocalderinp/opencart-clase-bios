@@ -6,7 +6,7 @@ public class DataProviderClass {
     public static Object[][] getDataFromDataProviderCompleteRegister(){
         return new Object[][]
                 {
-                        {       "Alberto","Alonso","alberto018sd9@alonso.uy","094549888",
+                        {       "Alberto","Alonso","alberto0918sd9@alonso.uy","094549888",
                                 "23568899","Alonso Company",
                                 "Avenida Italia 4422","No tiene","Montevideo",
                                 "12440","Uruguay","Montevideo",
