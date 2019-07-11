@@ -16,4 +16,16 @@ public class DataProviderClass {
                 };
 
     }
+
+    @DataProvider(name = "WishListDataProvider")
+    public static Object[][] getDataFromDataProviderWishListAddition () {
+        return new Object[][]
+                {
+                        {       "alberto0918sd9@alonso.uy",
+                                "password01","iMac"
+                        }
+
+                };
+
+    }
 }

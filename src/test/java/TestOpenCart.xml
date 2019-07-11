@@ -6,7 +6,7 @@
     <!-- <parameter name="valid_pass" value="pass00"/>-->
 
     <test name="test in Chrome">
-        <parameter name="browser" value="chrome"/>
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name = "TestOpenCart">
                 <methods>
@@ -16,6 +16,11 @@
             <class name = "HomePageTest">
                 <methods>
                     <include name="cambioMonedaParameters"/>
+                </methods>
+            </class>
+            <class name = "ProductManagementTest">
+                <methods>
+                    <include name="addToWishTest"/>
                 </methods>
             </class>
         </classes>

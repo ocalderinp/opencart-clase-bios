@@ -24,5 +24,7 @@ public class BasePage {
     public void seleccionarMoneda(String moneda){
         bar.selectMoneda(moneda);
     }
-
+    public LogInPage goLogInPage () {return bar.goLogInPage();}
+    public SearchPage searchObject(String object) {return bar.searchObject(object);}
+    public WishListPage goToWishList(){ return bar.goToWishList();}
 }

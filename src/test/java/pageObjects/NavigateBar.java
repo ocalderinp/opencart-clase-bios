@@ -21,6 +21,22 @@ public class NavigateBar {
 
     CurrencyMenu currencyMenu;
 
+    @FindBy(name = "search")
+    WebElement searchField;
+
+    @FindBy(className = "fa-search")
+    WebElement searchBttn;
+
+    @FindBy(linkText = "Login")
+    WebElement loginBttn;
+
+    @FindBy(partialLinkText = "Wish List")
+    WebElement wishListLink;
+
+    @FindBy(className = "fa-user")
+    WebElement userBttn;
+
+
 
     public NavigateBar(WebDriver driver) {
         this.driver = driver;
@@ -39,4 +55,25 @@ public class NavigateBar {
     public void selectMoneda(String moneda){
         currencyMenu.seleccionarMoneda(moneda);
     }
+
+    public SearchPage searchObject(String objeto) {
+        searchField.click();
+        searchField.sendKeys(objeto);
+        searchBttn.click();
+        return new SearchPage(driver);
+    }
+
+    public LogInPage goLogInPage () {
+        userBttn.click();
+        wait.until(ExpectedConditions.visibilityOf(loginBttn));
+        loginBttn.click();
+        return new LogInPage(driver);
+    }
+
+    public WishListPage goToWishList(){
+        wishListLink.click();
+        return new WishListPage(driver);
+    }
+
 }
+

@@ -6,10 +6,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
-import pageObjects.HomePage;
-import pageObjects.RegisterOKPage;
-import pageObjects.RegisterPage;
+import pageObjects.*;
 import utils.GetProperties;
+
+import java.net.MalformedURLException;
 
 public class BaseTest {
 
@@ -18,12 +18,16 @@ public class BaseTest {
     protected HomePage homePage;
     protected RegisterPage registerPage;
     protected RegisterOKPage registerOKPage;
+    protected SearchPage searchPage;
+    protected LogInPage logInPage;
+    protected WishListPage wishListPage;
     protected GetProperties properties = new GetProperties();
     protected String url = properties.getString("URL");
+    protected String hubUrl = properties.getString("HUB_URL");
 
     @BeforeMethod(alwaysRun = true)
     @Parameters("browser")
-    public void setupTest(String browser) {
+    public void setupTest(String browser) throws MalformedURLException {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions opt = new ChromeOptions();
             opt.addArguments("disable-infobars");
@@ -31,10 +35,13 @@ public class BaseTest {
             System.setProperty("webdriver.chrome.driver",
                     properties.getString("CHROMEDRIVER_PATH"));
             driver = new ChromeDriver(opt);
-        } else if (browser.equalsIgnoreCase("firefox")) {
+//            driver = new RemoteWebDriver(new URL(hubUrl), opt);
+        } else if (browser.equalsIgnoreCase(
+                "firefox")) {
             System.setProperty("webdriver.gecko.driver",
                     properties.getString("FIREFOX_PATH"));
             driver = new FirefoxDriver();
+//            driver = new RemoteWebDriver(new URL(hubUrl), new FirefoxOptions());
         }
 
         driver.get(url);
