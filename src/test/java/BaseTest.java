@@ -21,6 +21,8 @@ public class BaseTest {
     protected SearchPage searchPage;
     protected LogInPage logInPage;
     protected WishListPage wishListPage;
+    protected CartListProduct cartListProduct;
+    protected CartProduct cartProduct;
     protected GetProperties properties = new GetProperties();
     protected String url = properties.getString("URL");
     protected String hubUrl = properties.getString("HUB_URL");

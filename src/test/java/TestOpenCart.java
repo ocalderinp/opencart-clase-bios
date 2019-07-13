@@ -1,6 +1,5 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 public class TestOpenCart extends BaseTest {
 
@@ -17,6 +16,13 @@ public class TestOpenCart extends BaseTest {
 
         Assert.assertTrue(registerPage.textDisplayedRegister());
 
+    }
+
+    @Test(dataProvider = "WishListDataProvider", dataProviderClass = DataProviderClass.class )
+    public void testLogin(String userName, String password){
+        logInPage = homePage.goLogInPage();
+        homePage = logInPage.logInUser(userName, password);
+        Assert.assertTrue(homePage.verifyIsLogged());
     }
 
 }

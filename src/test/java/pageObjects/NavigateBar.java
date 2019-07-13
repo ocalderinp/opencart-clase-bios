@@ -33,6 +33,9 @@ public class NavigateBar {
     @FindBy(partialLinkText = "Wish List")
     WebElement wishListLink;
 
+    @FindBy(partialLinkText = "Shopping Cart")
+    WebElement cartListLink;
+
     @FindBy(className = "fa-user")
     WebElement userBttn;
 
@@ -71,8 +74,15 @@ public class NavigateBar {
     }
 
     public WishListPage goToWishList(){
+        wait.until(ExpectedConditions.elementToBeClickable(wishListLink));
         wishListLink.click();
         return new WishListPage(driver);
+    }
+
+    public CartProduct goToCartList(){
+        wait.until(ExpectedConditions.elementToBeClickable(cartListLink));
+        cartListLink.click();
+        return new CartProduct(driver);
     }
 
 }

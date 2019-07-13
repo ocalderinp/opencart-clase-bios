@@ -23,8 +23,6 @@ public class SearchPage extends BasePage {
     }
 
     public void addToWishList(String object){
-//        WebElement wishListBttn = driver.findElement(By.xpath(("//a[contains(text(),'" + object + "')]/ancestor::div[contains(@class,'product-layout')]")));
-//        wishListBttn.findElement(By.cssSelector(".fa-heart")).click();
         for (ProductItem product : resultados){
             if (product.getName().equals(object)){
                 product.addToWish();
@@ -46,4 +44,18 @@ public class SearchPage extends BasePage {
         }
     }
 
+    public void addToCart(String object){
+        for(ProductItem product : resultados){
+            if(product.getName().equals(object)){
+                product.addToCart();
+                break;
+            }
+        }
+    }
+
+    public boolean isObjectAddedToCart(String object){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(("div.alert-success"))));
+        WebElement addToCartSucces = driver.findElement(By.cssSelector(("div.alert-success")));
+        return addToCartSucces.getText().contains("Success: You have added " + object + " to your shopping cart!");
+    }
 }

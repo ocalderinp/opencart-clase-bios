@@ -23,6 +23,12 @@
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.webdriverextensions</groupId>
+            <artifactId>webdriverextensions</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -51,7 +57,66 @@
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.github.webdriverextensions</groupId>
+                <artifactId>webdriverextensions-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>install-drivers</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <drivers>
+                        <driver>
+                            <name>chromedriver</name>
+                            <version>75.0.3770.90</version>
+                            <platform>mac</platform>
+                        </driver>
+                        <driver>
+                            <name>chromedriver</name>
+                            <version>75.0.3770.90</version>
+                            <platform>linux</platform>
+                        </driver>
+                        <driver>
+                            <name>chromedriver</name>
+                            <version>75.0.3770.90</version>
+                            <platform>windows</platform>
+                        </driver>
+                        <driver>
+                            <name>geckodriver</name>
+                            <platform>windows</platform>
+                            <bit>64</bit>
+                        </driver>
+                        <driver>
+                            <name>geckodriver</name>
+                            <platform>windows</platform>
+                            <bit>32</bit>
+                        </driver>
+                        <driver>
+                            <name>geckodriver</name>
+                            <platform>mac</platform>
+                            <bit>64</bit>
+                        </driver>
+                        <driver>
+                            <name>geckodriver</name>
+                            <platform>linux</platform>
+                            <bit>64</bit>
+                        </driver>
+                        <driver>
+                            <name>geckodriver</name>
+                            <platform>linux</platform>
+                            <bit>32</bit>
+                        </driver>
+                    </drivers>
+                </configuration>
+            </plugin>
         </plugins>
+
+
     </build>
 
 

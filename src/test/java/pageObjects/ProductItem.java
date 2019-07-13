@@ -22,4 +22,8 @@ public class ProductItem {
     public void addToWish() {
         element.findElement(By.cssSelector("i.fa-heart")).click();
     }
+
+    public void addToCart(){
+        element.findElement(By.className("fa-shopping-cart")).click();
+    }
 }

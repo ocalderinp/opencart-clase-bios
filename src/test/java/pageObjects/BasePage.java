@@ -27,4 +27,5 @@ public class BasePage {
     public LogInPage goLogInPage () {return bar.goLogInPage();}
     public SearchPage searchObject(String object) {return bar.searchObject(object);}
     public WishListPage goToWishList(){ return bar.goToWishList();}
+    public CartProduct goToCartList(){return bar.goToCartList();}
 }
