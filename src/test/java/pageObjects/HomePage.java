@@ -20,7 +20,7 @@ public class HomePage extends BasePage{
     public boolean verificarCambioMoneda(String moneda){
         String simbolo = obtenerSimboloMoneda(moneda);
         boolean monedaOK = true;
-        List<WebElement> listadoElementos = driver.findElements(By.className("product-layout"));
+        List<WebElement> listadoElementos = findElements(By.className("product-layout"));
         List<ProductItem> listadoProductos = new ArrayList<>();
         for(WebElement element : listadoElementos){
             listadoProductos.add(new ProductItem(element));

@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,9 +21,10 @@ public class LogInPage extends BasePage {
     }
 
     public HomePage logInUser (String user, String password) {
-        emailField.sendKeys(user);
-        passwordFiled.sendKeys(password);
-        submitBttn.click();
+        setText(emailField, user);
+        setText(passwordFiled, password);
+        scrollIntoView(findElement(By.xpath("//h5[contains(text(), 'Customer Service')]")));
+        clickElement(submitBttn);
         return new HomePage(driver);
     }
 }

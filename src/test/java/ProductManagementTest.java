@@ -22,4 +22,13 @@ public class ProductManagementTest extends BaseTestWithLogin {
         Assert.assertTrue(cartProduct.verifyIfAt(object));
     }
 
+    @Test
+    public void addToCartMenorPrecio(){
+        searchPage = homePage.navegarAPhonesPDA();
+        searchPage.addToCartMenosPrecio();
+        cartProduct = searchPage.goToCartList();
+        Assert.assertTrue(cartProduct.hayElementos());
+        Assert.assertTrue(cartProduct.verifyIfAt(cartProduct.getProductName()));
+    }
+
 }

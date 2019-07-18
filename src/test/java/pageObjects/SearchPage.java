@@ -16,7 +16,7 @@ public class SearchPage extends BasePage {
     public SearchPage(WebDriver driver) {super (driver);
         resultados = new ArrayList<>();
         encontrado = false;
-        List<WebElement> listadoElementos = driver.findElements(By.className("product-layout"));
+        List<WebElement> listadoElementos = findElements(By.className("product-layout"));
         for(WebElement element : listadoElementos){
             resultados.add(new ProductItem(element));
         }
@@ -39,7 +39,7 @@ public class SearchPage extends BasePage {
         }
         else {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(("div.alert-success"))));
-            WebElement addToWishListSucces = driver.findElement(By.cssSelector(("div.alert-success")));
+            WebElement addToWishListSucces = findElement(By.cssSelector(("div.alert-success")));
             return addToWishListSucces.getText().contains("Success: You have added " + object + " to your wish list!");
         }
     }
@@ -55,7 +55,20 @@ public class SearchPage extends BasePage {
 
     public boolean isObjectAddedToCart(String object){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(("div.alert-success"))));
-        WebElement addToCartSucces = driver.findElement(By.cssSelector(("div.alert-success")));
+        WebElement addToCartSucces = findElement(By.cssSelector(("div.alert-success")));
         return addToCartSucces.getText().contains("Success: You have added " + object + " to your shopping cart!");
+    }
+
+    public void addToCartMenosPrecio() {
+        int pos = -1;
+        double menorPrecio = 999999;
+        for(int i = 0; i < resultados.size(); i++){
+            if(resultados.get(i).getPrecio() < menorPrecio){
+                menorPrecio = resultados.get(i).getPrecio();
+                pos = i;
+            }
+        }
+        setProductName(resultados.get(pos).getName());
+        resultados.get(pos).addToCart();
     }
 }

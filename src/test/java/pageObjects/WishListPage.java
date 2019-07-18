@@ -13,7 +13,7 @@ public class WishListPage extends BasePage{
     public WishListPage(WebDriver driver) {
         super(driver);
         productos = new ArrayList<>();
-        List<WebElement> filas = driver.findElements(By.cssSelector("tbody tr"));
+        List<WebElement> filas = findElements(By.cssSelector("tbody tr"));
         for(WebElement fila : filas){
             productos.add(new WishListProduct(fila));
         }

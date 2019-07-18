@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.SeleniumUtils;
 
 public class CurrencyMenu {
 
@@ -31,14 +32,13 @@ public class CurrencyMenu {
     }
 
     public void seleccionarMoneda(String moneda){
-        listMOnedas.click();
+        SeleniumUtils.clickElement(listMOnedas, wait);
         if(moneda.equalsIgnoreCase("USD")){
-            usd.click();
+            SeleniumUtils.clickElement(usd, wait);
         }else if(moneda.equalsIgnoreCase("EUR")){
-            eur.click();
+            SeleniumUtils.clickElement(eur, wait);
         }else if(moneda.equalsIgnoreCase("GBP")){
-            gbp.click();
-
+            SeleniumUtils.clickElement(gbp, wait);
         }
     }
 }

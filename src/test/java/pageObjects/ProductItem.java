@@ -26,4 +26,9 @@ public class ProductItem {
     public void addToCart(){
         element.findElement(By.className("fa-shopping-cart")).click();
     }
+
+    public double getPrecio() {
+        String precio = element.findElement(By.className("price")).getText().substring(1, element.findElement(By.className("price")).getText().indexOf("\n"));
+        return Double.valueOf(precio);
+    }
 }

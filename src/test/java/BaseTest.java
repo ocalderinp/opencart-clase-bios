@@ -33,7 +33,6 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions opt = new ChromeOptions();
             opt.addArguments("disable-infobars");
-            // opt.addArguments("--disable-extensions");
             System.setProperty("webdriver.chrome.driver",
                     properties.getString("CHROMEDRIVER_PATH"));
             driver = new ChromeDriver(opt);
@@ -43,7 +42,8 @@ public class BaseTest {
             System.setProperty("webdriver.gecko.driver",
                     properties.getString("FIREFOX_PATH"));
             driver = new FirefoxDriver();
-//            driver = new RemoteWebDriver(new URL(hubUrl), new FirefoxOptions());
+//            FirefoxOptions fopts = new FirefoxOptions();
+//            driver = new RemoteWebDriver(new URL(hubUrl), fopts);
         }
 
         driver.get(url);

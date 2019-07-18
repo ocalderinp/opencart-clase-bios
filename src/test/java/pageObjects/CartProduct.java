@@ -14,7 +14,8 @@ public class CartProduct extends BasePage {
     public CartProduct(WebDriver driver) {
         super(driver);
         productos = new ArrayList<>();
-        List<WebElement> filas = driver.findElements(By.cssSelector("tbody tr"));
+        WebElement tabla = findElement(By.cssSelector("div.table-responsive table tbody"));
+        List<WebElement> filas = tabla.findElements(By.cssSelector("tr"));
         for(WebElement fila : filas){
             productos.add(new CartListProduct(fila));
         }
@@ -26,5 +27,9 @@ public class CartProduct extends BasePage {
                 return true;
         }
         return false;
+    }
+
+    public boolean hayElementos() {
+        return productos.size() > 0;
     }
 }

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
 public class RegisterPage extends BasePage{
 
@@ -75,51 +74,46 @@ public class RegisterPage extends BasePage{
     ) {
 
 
-        firstName.sendKeys(nombre);
-        lastName.sendKeys(apellido);
-        email.sendKeys(mail);
-        telephone.sendKeys(tel);
-        fax.sendKeys(faxx);
-        companyName.sendKeys(compania);
-        address1.sendKeys(dire1);
-        address2.sendKeys(dire2);
-        city.sendKeys(ciudad);
-        postalCode.sendKeys(codigopostal);
-
-        Select seleccionarPais = new Select(country);
-        seleccionarPais.selectByVisibleText(pais_nombre);
+        setText(firstName, nombre);
+        setText(lastName, apellido);
+        setText(email, mail);
+        setText(telephone, tel);
+        setText(fax, faxx);
+        setText(companyName, compania);
+        setText(address1, dire1);
+        setText(address2, dire2);
+        setText(city, ciudad);
+        setText(postalCode, codigopostal);
+        selectByText(country, pais_nombre);
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//option[contains(text(),'Montevideo')]")));
-        Select seleccionarZona = new Select(zone);
-        seleccionarZona.selectByVisibleText(zona);
 
-        password.sendKeys(passw);
-        confirmPassword.sendKeys(confirmpassw);
-
-
+        selectByText(zone, zona);
+        setText(password, passw);
+        setText(confirmPassword, passw);
 
         if(suscribe.equalsIgnoreCase("YES"))
         {
-            radioNewsYes.click();
+            clickElement(radioNewsYes);
         }
         else if (suscribe.equalsIgnoreCase("NO"))
         {
-            radioNewsNo.click();
+            clickElement(radioNewsNo);
         }
 
         if(agree.equalsIgnoreCase("YES"))
         {
-            checkBoxAgree.click();
+            clickElement(checkBoxAgree);
         }
 
-        btnContinue.click();
+        clickElement(btnContinue);
         return new RegisterOKPage(driver);
     }
 
 
 
     public boolean textDisplayedRegister() {
-        return driver.findElement(By.id("content")).getText().contains("Your Account Has Been Created!");
+        return findElement(By.id("content")).getText().contains("Your Account Has Been Created!");
 
     }
 

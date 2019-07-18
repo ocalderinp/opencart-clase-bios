@@ -8,6 +8,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.SeleniumUtils;
 
 public class NavigateBar {
     WebDriver driver;
@@ -20,6 +21,7 @@ public class NavigateBar {
     WebElement btnRegister;
 
     CurrencyMenu currencyMenu;
+    MenuBar menuBar;
 
     @FindBy(name = "search")
     WebElement searchField;
@@ -46,11 +48,12 @@ public class NavigateBar {
         wait = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
         currencyMenu = new CurrencyMenu(driver);
+        menuBar = new MenuBar(driver);
     }
 
     public RegisterPage clickInRegister() {
-        btnMyAccount.click();
-        btnRegister.click();
+        SeleniumUtils.clickElement(btnMyAccount, wait);
+        SeleniumUtils.clickElement(btnRegister, wait);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"content\"]/h1")));
         return new RegisterPage(driver);
     }
@@ -60,29 +63,33 @@ public class NavigateBar {
     }
 
     public SearchPage searchObject(String objeto) {
-        searchField.click();
-        searchField.sendKeys(objeto);
-        searchBttn.click();
+        SeleniumUtils.clickElement(searchField, wait);
+        SeleniumUtils.sendText(searchField, wait, objeto);
+        SeleniumUtils.clickElement(searchBttn, wait);
         return new SearchPage(driver);
     }
 
     public LogInPage goLogInPage () {
-        userBttn.click();
+        SeleniumUtils.clickElement(userBttn, wait);
         wait.until(ExpectedConditions.visibilityOf(loginBttn));
-        loginBttn.click();
+        SeleniumUtils.clickElement(loginBttn, wait);
         return new LogInPage(driver);
     }
 
     public WishListPage goToWishList(){
         wait.until(ExpectedConditions.elementToBeClickable(wishListLink));
-        wishListLink.click();
+        SeleniumUtils.clickElement(wishListLink, wait);
         return new WishListPage(driver);
     }
 
     public CartProduct goToCartList(){
         wait.until(ExpectedConditions.elementToBeClickable(cartListLink));
-        cartListLink.click();
+        SeleniumUtils.clickElement(cartListLink, wait);
         return new CartProduct(driver);
+    }
+
+    public SearchPage navegarSimple(String opcion){
+        return menuBar.navegarSimple(opcion);
     }
 
 }

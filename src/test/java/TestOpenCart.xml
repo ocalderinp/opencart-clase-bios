@@ -24,6 +24,7 @@
                 <methods>
                     <include name="addToWishTest"/>
                     <include name="addToCartTest"/>
+                    <include name="addToCartMenorPrecio"/>
                 </methods>
             </class>
         </classes>
