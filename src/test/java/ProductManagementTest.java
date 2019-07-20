@@ -1,10 +1,14 @@
+import com.aventstack.extentreports.Status;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Method;
 
 public class ProductManagementTest extends BaseTestWithLogin {
 
     @Test(dataProvider = "WishListDataProvider", dataProviderClass = DataProviderClass.class)
-    public void addToWishTest(String object) {
+    public void addToWishTest(String object, Method method) {
+        extentTest = extentReports.createTest(method.getName());
         searchPage = homePage.searchObject(object);
         searchPage.addToWishList(object);
         Assert.assertTrue(searchPage.isObjectAddedToWishList(object));
@@ -14,7 +18,9 @@ public class ProductManagementTest extends BaseTestWithLogin {
     }
 
     @Test(dataProvider = "WishListDataProvider", dataProviderClass = DataProviderClass.class)
-    public void addToCartTest(String object){
+    public void addToCartTest(String object, Method method){
+        extentTest = extentReports.createTest(method.getName());
+        extentTest.log(Status.INFO, "Buscando articulo " + object);
         searchPage = homePage.searchObject(object);
         searchPage.addToCart(object);
         Assert.assertTrue(searchPage.isObjectAddedToCart(object));
@@ -23,7 +29,8 @@ public class ProductManagementTest extends BaseTestWithLogin {
     }
 
     @Test
-    public void addToCartMenorPrecio(){
+    public void addToCartMenorPrecio(Method method){
+        extentTest = extentReports.createTest(method.getName());
         searchPage = homePage.navegarAPhonesPDA();
         searchPage.addToCartMenosPrecio();
         cartProduct = searchPage.goToCartList();
