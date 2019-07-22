@@ -12,7 +12,7 @@ import java.util.List;
 
 public class BasePage {
 
-    protected WebDriver driver;
+    protected static WebDriver driver;
     protected WebDriverWait wait;
     protected NavigateBar bar;
     protected static String productName;
@@ -26,7 +26,7 @@ public class BasePage {
     }
 
     public BasePage(WebDriver driver){
-        this.driver = driver;
+        BasePage.driver = driver;
         wait = new WebDriverWait(driver,10);
         PageFactory.initElements(driver,this);
         bar = new NavigateBar(driver);
@@ -39,6 +39,7 @@ public class BasePage {
         bar.selectMoneda(moneda);
     }
     public LogInPage goLogInPage () {return bar.goLogInPage();}
+    public HomePage logout() { return bar.logout();}
     public SearchPage searchObject(String object) {return bar.searchObject(object);}
     public WishListPage goToWishList(){ return bar.goToWishList();}
     public CartProduct goToCartList(){return bar.goToCartList();}

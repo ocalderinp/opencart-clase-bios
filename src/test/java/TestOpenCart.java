@@ -29,6 +29,7 @@ public class TestOpenCart extends BaseTest {
         homePage = logInPage.logInUser(userName, password);
         eyes.checkWindow("LoggedUserPage");
         Assert.assertTrue(homePage.verifyIsLogged());
+        homePage.logout();
     }
 
 }

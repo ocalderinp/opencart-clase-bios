@@ -1,10 +1,15 @@
 package utils;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class SeleniumUtils {
@@ -64,5 +69,15 @@ public class SeleniumUtils {
     public static void scrollIntoView(WebDriver driver, WebElement webElement){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].scrollIntoView(true);", webElement);
+    }
+
+    public static String takeScreenShot(WebDriver driver) throws IOException {
+        String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        String path = System.getProperty("user.dir") + "\\reports\\images\\image_" + date + ".png";
+        File image = new File(path);
+        FileUtils.copyFile(source, image);
+        return path;
     }
 }

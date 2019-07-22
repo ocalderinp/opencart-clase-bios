@@ -14,7 +14,7 @@ public class ProductManagementTest extends BaseTestWithLogin {
         Assert.assertTrue(searchPage.isObjectAddedToWishList(object));
         wishListPage = searchPage.goToWishList();
         Assert.assertTrue(wishListPage.verifyIfAt(object));
-
+        homePage.logout();
     }
 
     @Test(dataProvider = "WishListDataProvider", dataProviderClass = DataProviderClass.class)
@@ -26,6 +26,7 @@ public class ProductManagementTest extends BaseTestWithLogin {
         Assert.assertTrue(searchPage.isObjectAddedToCart(object));
         cartProduct = searchPage.goToCartList();
         Assert.assertTrue(cartProduct.verifyIfAt(object));
+        homePage.logout();
     }
 
     @Test
@@ -36,6 +37,7 @@ public class ProductManagementTest extends BaseTestWithLogin {
         cartProduct = searchPage.goToCartList();
         Assert.assertTrue(cartProduct.hayElementos());
         Assert.assertTrue(cartProduct.verifyIfAt(cartProduct.getProductName()));
+        homePage.logout();
     }
 
 }

@@ -12,6 +12,5 @@ public class HomePageTest extends BaseTest{
         extentTest = extentReports.createTest(method.getName());
         homePage.seleccionarMoneda(moneda);
         Assert.assertTrue(homePage.verificarCambioMoneda(moneda));
-
     }
 }

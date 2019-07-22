@@ -23,7 +23,6 @@ public class LogInPage extends BasePage {
     public HomePage logInUser (String user, String password) {
         setText(emailField, user);
         setText(passwordFiled, password);
-        scrollIntoView(findElement(By.xpath("//h5[contains(text(), 'Customer Service')]")));
         clickElement(submitBttn);
         return new HomePage(driver);
     }

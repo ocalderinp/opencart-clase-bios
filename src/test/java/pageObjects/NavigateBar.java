@@ -32,6 +32,9 @@ public class NavigateBar {
     @FindBy(linkText = "Login")
     WebElement loginBttn;
 
+    @FindBy(linkText = "Logout")
+    WebElement logoutBttn;
+
     @FindBy(partialLinkText = "Wish List")
     WebElement wishListLink;
 
@@ -40,8 +43,6 @@ public class NavigateBar {
 
     @FindBy(className = "fa-user")
     WebElement userBttn;
-
-
 
     public NavigateBar(WebDriver driver) {
         this.driver = driver;
@@ -69,11 +70,18 @@ public class NavigateBar {
         return new SearchPage(driver);
     }
 
-    public LogInPage goLogInPage () {
+    public LogInPage goLogInPage() {
         SeleniumUtils.clickElement(userBttn, wait);
         wait.until(ExpectedConditions.visibilityOf(loginBttn));
         SeleniumUtils.clickElement(loginBttn, wait);
         return new LogInPage(driver);
+    }
+
+    public HomePage logout() {
+        SeleniumUtils.clickElement(userBttn, wait);
+        wait.until(ExpectedConditions.visibilityOf(logoutBttn));
+        SeleniumUtils.clickElement(logoutBttn, wait);
+        return new HomePage(driver);
     }
 
     public WishListPage goToWishList(){
