@@ -18,6 +18,7 @@ import utils.GetProperties;
 import utils.SeleniumUtils;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class BaseTest {
 
@@ -44,7 +45,7 @@ public class BaseTest {
 
     @BeforeSuite(alwaysRun = true)
     @Parameters("browser")
-    public void setupSuite(@Optional("chrome") String browser){
+    public void setupSuite(String browser) throws MalformedURLException {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions opt = new ChromeOptions();
             opt.addArguments("disable-infobars");
