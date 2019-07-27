@@ -6,7 +6,7 @@
     <parameter name="userName" value="alberto0918sd9@alonso.uy"/>
     <parameter name="password" value="password01"/>
 
-    <parameter name="browser" value="firefox"/>
+    <parameter name="browser" value="chrome"/>
     <test name="test in Chrome">
         <classes>
             <class name = "TestOpenCart">

@@ -13,10 +13,10 @@ public class TestOpenCart extends BaseTest {
 
         extentTest = extentReports.createTest(method.getName());
         registerPage = homePage.clickInRegister();
-        eyes.checkWindow("RegisterPage");
+//        eyes.checkWindow("RegisterPage");
         registerOKPage = registerPage.registerNewUser(nombre,apellido,mail,tel,faxx,compania,dire1,dire2,ciudad,codigopostal,pais_nombre,zona,
                 passw,confirmpassw,suscribe,agree);
-        eyes.checkWindow("RegisterPageOK");
+//        eyes.checkWindow("RegisterPageOK");
         Assert.assertTrue(registerPage.textDisplayedRegister());
 
     }
@@ -25,9 +25,9 @@ public class TestOpenCart extends BaseTest {
     public void testLogin(String userName, String password, Method method){
         extentTest = extentReports.createTest(method.getName());
         logInPage = homePage.goLogInPage();
-        eyes.checkWindow("LoginPage");
+//        eyes.checkWindow("LoginPage");
         homePage = logInPage.logInUser(userName, password);
-        eyes.checkWindow("LoggedUserPage");
+//        eyes.checkWindow("LoggedUserPage");
         Assert.assertTrue(homePage.verifyIsLogged());
         homePage.logout();
     }

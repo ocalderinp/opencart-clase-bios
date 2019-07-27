@@ -1,4 +1,3 @@
-import com.applitools.eyes.RectangleSize;
 import com.applitools.eyes.selenium.Eyes;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -61,10 +60,10 @@ public class BaseTest {
 //            FirefoxOptions fopts = new FirefoxOptions();
 //            driver = new RemoteWebDriver(new URL(hubUrl), fopts);
         }
-        eyes = new Eyes();
-        eyes.setApiKey(api_key);
-        eyes.open(driver, "OpenCart", "TestVisuales",
-                new RectangleSize(600,800));
+//        eyes = new Eyes();
+//        eyes.setApiKey(api_key);
+//        eyes.open(driver, "OpenCart", "TestVisuales",
+//                new RectangleSize(600,800));
         SA = new SoftAssert();
         setupReports();
     }
@@ -111,7 +110,7 @@ public class BaseTest {
     public void flush(){
         extentReports.flush();
         driver.quit();
-        eyes.close();
+//        eyes.close();
     }
 
 }
