@@ -48,6 +48,7 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions opt = new ChromeOptions();
             opt.addArguments("disable-infobars");
+            opt.addArguments("--headless");
             System.setProperty("webdriver.chrome.driver",
                     properties.getString("CHROMEDRIVER_PATH"));
             driver = new ChromeDriver(opt);
