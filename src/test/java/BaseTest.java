@@ -45,12 +45,17 @@ public class BaseTest {
     @BeforeSuite(alwaysRun = true)
     @Parameters("browser")
     public void setupSuite(String browser) throws MalformedURLException {
+        boolean ci = System.getProperty("ci") != null;
         if (browser.equalsIgnoreCase("chrome")) {
+            System.setProperty("webdriver.chrome.driver",
+                properties.getString("CHROMEDRIVER_PATH"));
             ChromeOptions opt = new ChromeOptions();
             opt.addArguments("disable-infobars");
-            opt.addArguments("--headless");
-            System.setProperty("webdriver.chrome.driver",
-                    properties.getString("CHROMEDRIVER_PATH"));
+            if(ci){
+                opt.addArguments("--headless");
+                opt.addArguments("--window-size=1980,1080");
+            }
+
             driver = new ChromeDriver(opt);
 //            driver = new RemoteWebDriver(new URL(hubUrl), opt);
         } else if (browser.equalsIgnoreCase(
@@ -67,6 +72,9 @@ public class BaseTest {
 //                new RectangleSize(600,800));
         SA = new SoftAssert();
         setupReports();
+        if(!ci){
+            driver.manage().window().maximize();
+        }
     }
 
     public void setupReports(){
@@ -86,7 +94,7 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void navegarInicio() {
         driver.get(url);
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         homePage = new HomePage(driver);
     }
 
