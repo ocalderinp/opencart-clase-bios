@@ -46,6 +46,7 @@ public class BaseTest {
     @Parameters("browser")
     public void setupSuite(String browser) throws MalformedURLException {
         boolean ci = System.getProperty("ci") != null;
+        System.out.println("Ejecucion en ci: " + ci.toString());
         if (browser.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver",
                 properties.getString("CHROMEDRIVER_PATH"));
