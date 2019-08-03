@@ -5,7 +5,7 @@ public class BaseTestWithLogin extends BaseTest {
 
     @BeforeMethod
     @Parameters({"userName", "password"})
-    public void setupLogin(String userName, String password){
+    public void setupLogin(String userName, String password) {
         logInPage = homePage.goLogInPage();
         homePage = logInPage.logInUser(userName, password);
     }

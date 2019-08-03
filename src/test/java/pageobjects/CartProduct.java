@@ -1,4 +1,4 @@
-package pageObjects;
+package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +11,7 @@ public class CartProduct extends BasePage {
 
     List<CartListProduct> productos;
 
-    public CartProduct(WebDriver driver) {
+    public CartProduct(final WebDriver driver) {
         super(driver);
         productos = new ArrayList<>();
         WebElement tabla = findElement(By.cssSelector("div.table-responsive table tbody"));
@@ -21,15 +21,15 @@ public class CartProduct extends BasePage {
         }
     }
 
-    public boolean verifyIfAt(String object) {
-        for(CartListProduct product : productos){
+    public boolean verifyIfAt(final String object) {
+        for(CartListProduct product : productos) {
             if(product.getName().contains(object))
                 return true;
         }
         return false;
     }
 
-    public boolean hayElementos() {
+    public boolean hayElementos()  {
         return productos.size() > 0;
     }
 }

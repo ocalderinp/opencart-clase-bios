@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import pageObjects.*;
+import pageobjects.*;
 import sun.awt.OSInfo;
 import utils.GetProperties;
 import utils.SeleniumUtils;
@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 
 public class BaseTest {
 
-    protected static SoftAssert SA;
+    protected static SoftAssert softAssert;
     protected static WebDriver driver;
     protected HomePage homePage;
     protected Eyes eyes;
@@ -45,7 +45,7 @@ public class BaseTest {
     @BeforeSuite(alwaysRun = true)
     @Parameters("browser")
     public void setupSuite(final String browser) throws MalformedURLException {
-        boolean ci = System.getProperty("ci") != null;
+        boolean ci = Boolean.parseBoolean(System.getProperty("ci"));
         System.out.println("Ejecucion en ci: " + String.valueOf(ci));
         if (browser.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver",
@@ -71,7 +71,7 @@ public class BaseTest {
 //        eyes.setApiKey(api_key);
 //        eyes.open(driver, "OpenCart", "TestVisuales",
 //                new RectangleSize(600,800));
-        SA = new SoftAssert();
+        softAssert = new SoftAssert();
         setupReports();
         if (!ci) {
             driver.manage().window().maximize();
@@ -90,6 +90,7 @@ public class BaseTest {
         extentReports.setSystemInfo("Ambiente", "Testing");
         extentReports.setSystemInfo("Hostname", "opencart.testing.us");
         extentReports.setSystemInfo("Sistema Operativo", OSInfo.getOSType().name());
+
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -101,18 +102,23 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void teardownTest(final ITestResult result) throws IOException {
-        SA.assertAll();
+        softAssert.assertAll();
         if (result.getStatus() == ITestResult.FAILURE) {
-            extentTest.log(Status.FAIL, "Test Case " + result.getName() + " failed");
-            extentTest.log(Status.FAIL, "Caused: " + result.getThrowable());
+            extentTest.log(Status.FAIL,
+                    "Test Case " + result.getName() + " failed");
+            extentTest.log(Status.FAIL,
+                    "Caused: " + result.getThrowable());
             String screenShoot = SeleniumUtils.takeScreenShot(driver);
             extentTest.log(Status.FAIL, "Image: ");
             extentTest.addScreenCaptureFromPath(screenShoot);
         } else if (result.getStatus() == ITestResult.SKIP) {
-            extentTest.log(Status.SKIP, "Test Case " + result.getName() + " skipped");
-            extentTest.log(Status.SKIP, "Caused: " + result.getThrowable());
+            extentTest.log(Status.SKIP,
+                    "Test Case " + result.getName() + " skipped");
+            extentTest.log(Status.SKIP,
+                    "Caused: " + result.getThrowable());
         } else if (result.getStatus() == ITestResult.SUCCESS) {
-            extentTest.log(Status.PASS, "Test Case " + result.getName() + " passed");
+            extentTest.log(Status.PASS,
+                    "Test Case " + result.getName() + " passed");
         }
     }
 

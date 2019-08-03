@@ -1,13 +1,12 @@
-package pageObjects;
+package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class CartListProduct {
-
+public class WishListProduct {
     WebElement element;
 
-    public CartListProduct(WebElement element){
+    public WishListProduct(WebElement element){
         this.element = element;
     }
 
@@ -22,5 +21,6 @@ public class CartListProduct {
     public void delete(){
         element.findElement(By.cssSelector("button[data-original-title='Remove']")).click();
     }
+
 
 }
